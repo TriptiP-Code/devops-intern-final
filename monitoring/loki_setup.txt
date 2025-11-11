@@ -1,0 +1,11 @@
+# Loki Setup Notes
+
+1. Started Loki container:
+   docker run -d --name=loki -p 3100:3100 grafana/loki:latest
+
+2. Viewed logs:
+   docker logs loki
+   curl http://localhost:3100/metrics
+
+3. Connected Nomad/Docker logs:
+   docker logs <container-name> | curl -XPOST -H "Content-Type: text/plain" -s http://localhost:3100/api/prom/push --data-binary @-
